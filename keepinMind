@@ -1,0 +1,14 @@
+CUDA_VISIBLE_DEVICES=4,5,6,7 PORT=29500 tools/dist_test.sh ./configs/imvoxelnet/imvoxelnet_scannet_fast.py work_dirs/imvoxelnet_scannet_fast/epoch_12_.pth 4 --eval mAP
+
+
+
+CUDA_VISIBLE_DEVICES=4,5,6,7 PORT=29500 tools/dist_train.sh ./configs/imvoxelnet/imvoxelnet_scannet_fast.py 4
+
+CUDA_VISIBLE_DEVICES=4,5,6 PORT=29500 tools/dist_train.sh ./configs/imvoxelnet/imvoxelnet_scannet_fast.py 3
+
+
+现在跑的几次实验，
+第一次是-b，卷积核是只有四位，46.4
+第二次是baseline，改了训练使用的图片数量，46.01
+第三次是-b，卷积核是八位，45.93
+第四次是-b, 可变卷积核
